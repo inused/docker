@@ -8,7 +8,7 @@ ADD https://raw.githubusercontent.com/zhzjwd/docker/master/debian-caddy-aria2/sh
 ADD https://raw.githubusercontent.com/zhzjwd/docker/master/debian-caddy-aria2/sh/aria2.sh $BUILD_PATH/aria2.sh
 ADD https://raw.githubusercontent.com/zhzjwd/docker/master/debian-caddy-aria2/sh/rclone.sh $BUILD_PATH/rclone.sh
 RUN apt-get update && \
-	apt-get install -y openssh-server zip unzip screen curl wget cron locales iptables && \
+	apt-get install -y openssh-server zip unzip screen curl wget cron locales locales-all iptables nano p7zip p7zip-full make fuse gcc g++  && \
 	echo "deb http://packages.dotdeb.org jessie all\ndeb-src http://packages.dotdeb.org jessie all" > /etc/apt/sources.list.d/dotdeb.list && \
 	wget http://www.dotdeb.org/dotdeb.gpg -O /tmp/dotdeb.gpg && apt-key add /tmp/dotdeb.gpg && rm /tmp/dotdeb.gpg && \
 	apt-get update && \
@@ -27,9 +27,11 @@ RUN apt-get update && \
 	sed -ri 's/^PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config && \
 	sed -ri 's/^#PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config && \
 	sed -ri '/^PermitRootLogin/a\#PermitRootLogin prohibit-password' /etc/ssh/sshd_config && \
-	sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
+	sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config && \
+	echo 'root:root' | chpasswd
 
-RUN echo 'root:root' | chpasswd
+ENV LC_ALL zh_CN.UTF-8
+ENV LANG zh_CN.UTF-8
 
 EXPOSE 22
 

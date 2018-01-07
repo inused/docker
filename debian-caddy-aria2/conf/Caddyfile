@@ -1,0 +1,46 @@
+https://ibm.dnsip.tk {
+    root /home/ariang
+#    git https://github.com/mayswind/AriaNg-DailyBuild.git .
+    git {
+        repo  https://github.com/mayswind/AriaNg-DailyBuild.git
+        path  .
+        interval  86400
+    }
+    timeouts none
+    gzip
+    tls /root/.aria2/cert/cert.crt /root/.aria2/cert/cert.key
+#    proxy /aria2/jsonrpc 127.0.0.1:10086 {
+#        without /aria2
+#    }
+	filemanager /file /home/down/file {
+	database       /usr/local/caddy/filemanager.db
+	basicauth
+	locale         zh-cn
+	allow_commands true
+	allow_edit     true
+	allow_new      true
+	allow_publish  true
+	commands       git,svn
+	}
+}
+
+# DouBi Directory Lister
+https://ibm.dnsip.tk:1000 {
+    root /home/down
+#    git https://github.com/ToyoDAdoubi/DirectoryLister.git .
+    git {
+        repo  https://github.com/ToyoDAdoubi/DirectoryLister.git
+        path  .
+        interval  86400
+    }
+    basicauth / admin admin
+    gzip
+    tls /root/.aria2/cert/cert.crt /root/.aria2/cert/cert.key
+
+    fastcgi / /var/run/php/php7.0-fpm.sock {
+        index  index.php
+        ext   .php
+        split .php
+    }
+}
+

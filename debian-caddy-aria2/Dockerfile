@@ -1,7 +1,7 @@
 # version: 1
 FROM debian:jessie
 MAINTAINER laoimam "dockerhub@temp.tk"
-ENV BUILD_PATH /tmp
+ENV BUILD_PATH /root/build
 RUN mkdir -p $BUILD_PATH
 WORKDIR $BUILD_PATH
 ADD https://raw.githubusercontent.com/zhzjwd/docker/master/debian-caddy-aria2/sh/caddy_install.sh $BUILD_PATH/caddy_install.sh
@@ -13,16 +13,15 @@ RUN apt-get update && \
 	wget http://www.dotdeb.org/dotdeb.gpg -O /tmp/dotdeb.gpg && apt-key add /tmp/dotdeb.gpg && rm /tmp/dotdeb.gpg && \
 	apt-get update && \
 	apt-get install -y php7.0 php7.0-fpm php7.0-cgi php7.0-curl php7.0-gd php7.0-zip && \
-	mkdir -p /var/run/sshd && \
-	mkdir -p /var/run/php && \
-	mkdir -p /home/down && \
-	mkdir -p /home/ariang && \
+	mkdir -p /var/run/sshd /var/run/php && \
+	mkdir -p /home/down /home/ariang && \
 	mkdir -p /root/.config/rclone && \
+	mkdir -p /root/.ssh && touch /root/.ssh/authorized_keys && \
+	chmod 755 /root/.ssh /root/.ssh/authorized_keys && \
 	bash caddy_install.sh install http.filemanager,http.git && \
 	bash aria2.sh install && \
 	bash rclone.sh && \
 	rm -rf /var/lib/apt/lists/* && \
-	rm -rf $BUILD_PATH/* && \
 	apt-get clean && \
 	sed -ri 's/^PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config && \
 	sed -ri 's/^#PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config && \

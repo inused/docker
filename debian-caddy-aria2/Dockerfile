@@ -14,9 +14,9 @@ RUN adp-get update && \
 	mkdir -p /home/down && \
 	mkdir -p /home/ariang && \
 	mkdir -p /root/.config/rclone && \
-	bash caddy_install.sh install http.filemanager,http.git && \
-	bash aria2.sh install && \
-	bash rclone.sh && \
+#	bash caddy_install.sh install http.filemanager,http.git && \
+#	bash aria2.sh install && \
+#	bash rclone.sh && \
 	rm -rf /var/lib/apt/lists/* && \
 	rm -rf /home/tmp && \
 	apt-get clean

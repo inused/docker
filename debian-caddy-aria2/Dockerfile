@@ -28,10 +28,20 @@ RUN apt-get update && \
 	sed -ri 's/^#PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config && \
 	sed -ri '/^PermitRootLogin/a\#PermitRootLogin prohibit-password' /etc/ssh/sshd_config && \
 	sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config && \
+	sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
+	sed -i -e 's/# zh_CN.UTF-8 UTF-8/zh_CN.UTF-8 UTF-8/' /etc/locale.gen && \
+	sed -i -e 's/# zh_HK.UTF-8 UTF-8/zh_HK.UTF-8 UTF-8/' /etc/locale.gen && \
+	sed -i -e 's/# zh_TW.UTF-8 UTF-8/zh_TW.UTF-8 UTF-8/' /etc/locale.gen && \
+	sed -i -e 's/# ja_JP.UTF-8 UTF-8/ja_JP.UTF-8 UTF-8/' /etc/locale.gen && \
+	sed -i -e 's/# ko_KR.UTF-8 UTF-8/ko_KR.UTF-8 UTF-8/' /etc/locale.gen && \
+	locale-gen && \
+	update-locale LANG=zh_CN.UTF-8 && \
+	echo "LC_ALL=zh_CN.UTF-8" >> /etc/default/locale && \
+	echo "LANGUAGE=zh_CN.UTF-8" >> /etc/default/locale && \
 	echo 'root:root' | chpasswd
 
-ENV LC_ALL zh_CN.UTF-8
-ENV LANG zh_CN.UTF-8
+# ENV LC_ALL zh_CN.UTF-8
+# ENV LANG zh_CN.UTF-8
 
 EXPOSE 22
 

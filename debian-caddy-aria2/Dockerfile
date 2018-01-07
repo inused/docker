@@ -7,8 +7,8 @@ WORKDIR $BUILD_PATH
 ADD https://raw.githubusercontent.com/zhzjwd/docker/master/debian-caddy-aria2/sh/caddy_install.sh $BUILD_PATH/caddy_install.sh
 ADD https://raw.githubusercontent.com/zhzjwd/docker/master/debian-caddy-aria2/sh/aria2.sh $BUILD_PATH/aria2.sh
 ADD https://raw.githubusercontent.com/zhzjwd/docker/master/debian-caddy-aria2/sh/rclone.sh $BUILD_PATH/rclone.sh
-RUN apt-get update && \
-	apt-get install -y openssh-server zip unzip screen php7.0 php7.0-fpm curl wget php7.0-cgi php7.0-curl php7.0-gd cron ffmpeg curl locales iptables && \
+RUN apt update && \
+	apt install -y openssh-server zip unzip screen php7.0 php7.0-fpm curl wget php7.0-cgi php7.0-curl php7.0-gd cron ffmpeg curl locales iptables && \
 	mkdir -p /var/run/sshd && \
 	mkdir -p /var/run/php && \
 	mkdir -p /home/down && \
@@ -19,7 +19,7 @@ RUN apt-get update && \
 	bash rclone.sh && \
 	rm -rf /var/lib/apt/lists/* && \
 	rm -rf /home/tmp && \
-	apt-get clean
+	apt clean
 
 RUN echo 'root:root' | chpasswd
 

@@ -33,10 +33,12 @@ RUN apt-get update && \
 	sed -i -e 's/# zh_TW.UTF-8 UTF-8/zh_TW.UTF-8 UTF-8/' /etc/locale.gen && \
 	sed -i -e 's/# ja_JP.UTF-8 UTF-8/ja_JP.UTF-8 UTF-8/' /etc/locale.gen && \
 	sed -i -e 's/# ko_KR.UTF-8 UTF-8/ko_KR.UTF-8 UTF-8/' /etc/locale.gen && \
-	locale-gen && \
+	locale-gen && localedef -i zh_CN -c -f UTF-8 zh_CN.UTF-8 && \
 	update-locale LANG=zh_CN.UTF-8 && \
 	echo "LC_ALL=zh_CN.UTF-8" >> /etc/default/locale && \
 	echo "LANGUAGE=zh_CN.UTF-8" >> /etc/default/locale && \
+	echo "export LC_ALL=zh_CN.UTF-8" >> /etc/profile && \
+	echo "export LANG=zh_CN.UTF-8" >> /etc/profile && \
 	echo 'root:root' | chpasswd
 
 ENV LC_ALL zh_CN.UTF-8

@@ -9,7 +9,7 @@ https://ibm.dnsip.tk {
     timeouts none
     gzip
     tls /root/.aria2/cert/cert.crt /root/.aria2/cert/cert.key
-#    proxy /aria2/jsonrpc 127.0.0.1:10086 {
+#    proxy /aria2/jsonrpc 127.0.0.1:6800 {
 #        without /aria2
 #    }
 	filemanager /file /home/down/file {
@@ -25,7 +25,7 @@ https://ibm.dnsip.tk {
 }
 
 # DouBi Directory Lister
-https://ibm.dnsip.tk:1000 {
+https://ibm.dnsip.tk:445 {
     root /home/down
 #    git https://github.com/ToyoDAdoubi/DirectoryLister.git .
     git {

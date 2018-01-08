@@ -14,14 +14,14 @@ RUN apt-get update && \
 	wget http://www.dotdeb.org/dotdeb.gpg -O /tmp/dotdeb.gpg && apt-key add /tmp/dotdeb.gpg && rm /tmp/dotdeb.gpg && \
 	apt-get update && \
 	apt-get install -y php7.0 php7.0-fpm php7.0-cgi php7.0-curl php7.0-gd php7.0-zip && \
-	mkdir -p /var/run/sshd /var/run/php && \
-	mkdir -p /home/down /home/ariang && \
-	mkdir -p /root/.config/rclone && \
-	mkdir -p /root/.ssh && touch /root/.ssh/authorized_keys && \
-	chmod 755 /root/.ssh /root/.ssh/authorized_keys && \
 	bash caddy_install.sh install http.filemanager,http.git && \
 	bash aria2.sh install && \
 	bash rclone.sh && \
+	mkdir -p /var/run/sshd /var/run/php && \
+	mkdir -p /home/down /home/ariang && \
+	mkdir -p /root/.config/rclone /root/.aria2/cert && \
+	mkdir -p /root/.ssh && touch /root/.ssh/authorized_keys && \
+	chmod 755 /root/.ssh /root/.ssh/authorized_keys && \
 	rm -rf /var/lib/apt/lists/* && \
 	apt-get clean && \
 	sed -ri 's/^PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config && \

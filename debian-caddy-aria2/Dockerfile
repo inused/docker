@@ -9,7 +9,7 @@ ADD https://raw.githubusercontent.com/zhzjwd/docker/master/debian-caddy-aria2/sh
 ADD https://raw.githubusercontent.com/zhzjwd/docker/master/debian-caddy-aria2/sh/rclone.sh $BUILD_PATH/rclone.sh
 ADD https://raw.githubusercontent.com/zhzjwd/docker/master/debian-caddy-aria2/sh/service_start.sh $BUILD_PATH/service_start.sh
 RUN apt-get update && \
-	apt-get install -y openssh-server zip unzip screen curl wget sed git cron locales locales-all iptables nano p7zip p7zip-full make fuse gcc g++  && \
+	apt-get install -y openssh-server zip unzip screen curl wget sed git cron locales locales-all iptables nano p7zip p7zip-full make fuse gcc g++ python python-pip python3 python3-pip && \
 	echo "deb http://packages.dotdeb.org jessie all\ndeb-src http://packages.dotdeb.org jessie all" > /etc/apt/sources.list.d/dotdeb.list && \
 	wget http://www.dotdeb.org/dotdeb.gpg -O /tmp/dotdeb.gpg && apt-key add /tmp/dotdeb.gpg && rm /tmp/dotdeb.gpg && \
 	apt-get update && \

@@ -39,8 +39,8 @@ RUN apt-get update && \
 	echo "LANGUAGE=zh_CN.UTF-8" >> /etc/default/locale && \
 	echo 'root:root' | chpasswd
 
-# ENV LC_ALL zh_CN.UTF-8
-# ENV LANG zh_CN.UTF-8
+ENV LC_ALL zh_CN.UTF-8
+ENV LANG zh_CN.UTF-8
 
 EXPOSE 22
 

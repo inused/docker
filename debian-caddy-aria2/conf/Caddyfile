@@ -1,4 +1,4 @@
-https://ibm.dnsip.tk {
+https://domain {
     root /home/ariang
 #    git https://github.com/mayswind/AriaNg-DailyBuild.git .
     git {
@@ -25,7 +25,7 @@ https://ibm.dnsip.tk {
 }
 
 # DouBi Directory Lister
-https://ibm.dnsip.tk:445 {
+https://domain:445 {
     root /home/down
 #    git https://github.com/ToyoDAdoubi/DirectoryLister.git .
     git {

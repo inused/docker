@@ -40,6 +40,8 @@ RUN apt-get update && \
 	echo "LANGUAGE=zh_CN.UTF-8" >> /etc/default/locale && \
 	echo "export LC_ALL=zh_CN.UTF-8" >> /etc/profile && \
 	echo "export LANG=zh_CN.UTF-8" >> /etc/profile && \
+	echo 'PS1="\[\e[36m\][\[\e[36m\]\u\[\e[0m\]@\h\[\e[35m\]:\[\e[32m\]\w\[\e[36m\]]\[\e[0m\]\\$"' >> /root/.bashrc && \
+	echo "debian" > /etc/hostname && \
 	echo 'root:root' | chpasswd
 
 ENV LC_ALL zh_CN.UTF-8

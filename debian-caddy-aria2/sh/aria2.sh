@@ -191,9 +191,9 @@ Set_aria2_RPC_passwd(){
 		aria2_passwd_1=${aria2_passwd}
 	fi
 	echo -e "请输入要设置的 Aria2 RPC密码(旧密码为：${Green_font_prefix}${aria2_passwd_1}${Font_color_suffix})"
-	stty erase '^H' && read -p "(默认密码: doub.io 密码请不要包含等号 = 和井号 #):" aria2_RPC_passwd
+	stty erase '^H' && read -p "(默认密码: <Token> 密码请不要包含等号 = 和井号 #):" aria2_RPC_passwd
 	echo
-	[[ -z "${aria2_RPC_passwd}" ]] && aria2_RPC_passwd="doub.io"
+	[[ -z "${aria2_RPC_passwd}" ]] && aria2_RPC_passwd="<Token>"
 	if [[ "${aria2_passwd}" != "${aria2_RPC_passwd}" ]]; then
 		if [[ -z "${aria2_passwd}" ]]; then
 			echo -e "\nrpc-secret=${aria2_RPC_passwd}" >> ${aria2_conf}

@@ -454,6 +454,7 @@ Update_Shell(){
 		echo -e "当前已是最新版本[ ${sh_new_ver} ] !"
 	fi
 }
+menu(){
 echo && echo -e " Aria2 一键安装管理脚本 ${Red_font_prefix}[v${sh_ver}]${Font_color_suffix}
   -- Toyo | doub.io/shell-jc4 --
   
